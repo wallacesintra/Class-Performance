@@ -8,9 +8,12 @@ import {
     FlatList,
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {AppTab} from "@/components/AppTab";
 import StudentCard from "@/components/students/StudentCard";
+import {useDispatch, useSelector} from "react-redux";
+import {studentsRootState} from "@/redux/students/studentStore";
+import {getClassProfile} from "@/redux/class/classProfileSlice";
 
 
 const students = [
@@ -21,6 +24,14 @@ const students = [
 ];
 
 export function ClassProfileScreen() {
+    const dispatch = useDispatch();
+
+    const classProfileState = useSelector((state: studentsRootState) => state.classProfile);
+
+    useEffect(() => {
+        dispatch(getClassProfile());
+    }, []);
+
     const [search, setSearch] = useState('');
     const [selectedTab, setSelectedTab] = useState('Letter Identification');
       return(
@@ -62,6 +73,12 @@ export function ClassProfileScreen() {
                           <StudentCard student={item} onPress={() => console.log(item.name)} />
                       )}
                   />
+              </View>
+
+              <View>
+                  <Text>{classProfileState.strands.length}</Text>
+                  <Text>{classProfileState.error}</Text>
+                  <Text>{classProfileState.loading}</Text>
               </View>
           </View>
       )
