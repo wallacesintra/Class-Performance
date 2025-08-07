@@ -9,7 +9,6 @@ import {ClassProfileScreen} from "@/screens/ClassProfileScreen";
 
 export default function HomeScreen() {
   return (
-
       <ClassProfileScreen/>
   );
 }

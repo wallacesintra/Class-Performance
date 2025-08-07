@@ -4,8 +4,10 @@ import { Student } from "@/types/students/Students";
 
 
 type studentCardProps = {
-    student: Student;
-    onPress: () => void;
+    studentId: string;
+    studentName: string;
+    competence: string;
+    onPress: (studentId: string) => void;
 }
 
 function getColor(code: string): string {
@@ -24,19 +26,19 @@ function getColor(code: string): string {
 }
 
 
-const StudentCard = ({ student, onPress }: studentCardProps) => {
-    const { name, competence } = student;
+const StudentCard = ({ studentId,studentName,competence ,onPress }: studentCardProps) => {
+    // const { name, competence } = student;
 
     const competenceColor = getColor(competence);
 
     return (
-        <TouchableOpacity onPress={onPress} style={styles.container}>
+        <TouchableOpacity onPress={() => onPress(studentId)} style={styles.container}>
             <Image
                 source={require('../../assets/student_avatar.jpg')}
                 style={styles.avatar}
             />
             <View style={styles.textContainer}>
-                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.name}>{studentName}</Text>
                 <Text style={[styles.competence, { color: competenceColor || 'gray' }]}>
                     {competence}
                 </Text>
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: 12,
-        paddingHorizontal: 16,
+        gap: 12,
         borderBottomWidth: 0.5,
         borderColor: '#ccc',
     },
@@ -59,7 +61,6 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        marginRight: 12,
     },
     textContainer: {
         flex: 1,

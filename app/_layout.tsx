@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import {Provider as ReduxProvider} from 'react-redux';
 import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import studentsStore from "@/redux/students/studentStore";
+import studentsStore from "@/redux/studentStore";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();

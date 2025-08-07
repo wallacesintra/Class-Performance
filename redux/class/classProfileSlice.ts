@@ -18,6 +18,7 @@ export const getClassProfile = createAsyncThunk<{profile: StrandDetail[]},void>(
     'fetchClassProfile',
     async () => {
         const response = await apiClient.fetchClassProfile();
+        // console.log(`Class profile response: ${JSON.stringify(response)}`);
         if (response.kind === 'success' && response.body) {
             return {
                 profile: response.body.strands ?? [],

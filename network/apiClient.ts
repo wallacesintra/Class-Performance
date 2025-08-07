@@ -42,7 +42,6 @@ export const fetchStudents = async (
 };
 
 export const fetchClassProfile = async (): Promise<NetworkResponse<FetchClassProgressResponse>> => {
-    console.log('Fetching class profile...');
     const response = await fetch(
         `http://10.0.2.2:3000/class_profile`,
         {
@@ -54,17 +53,16 @@ export const fetchClassProfile = async (): Promise<NetworkResponse<FetchClassPro
         },
     );
 
-
-
     if (response.ok) {
         const json = await response.json();
-        console.log(json); // Log the actual response data
+        console.log("API Response:", json);
+
         return {
             kind: 'success',
-            body: { strands: json.results }, // wrap results in an object
+            body: json.strands ? json : { strands: json },
         };
     } else {
-        console.log(await response.text()); // Log the error response text
+        console.log("API Error:", await response.text());
         return {
             kind: 'failure',
         };
