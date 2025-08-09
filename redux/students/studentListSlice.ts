@@ -29,13 +29,13 @@ const initialState: DetailedStudentList = {
     error: null,
 }
 
-export const fetchDetailedStudents = createAsyncThunk<
+export const getStudentDetails = createAsyncThunk<
   { students: DetailedStudent[] },
-  { page: number; count: number }
+  void
 >(
   "fetchDetailedStudents",
-  async ({ page, count }) => {
-    const response = await apiClient.fetchStudents(page, count);
+  async () => {
+    const response = await apiClient.fetchStudents();
     if (response.kind === "success" && response.body) {
       return { students: response.body };
     } else {
@@ -50,15 +50,15 @@ const detailedStudentsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
       builder
-        .addCase(fetchDetailedStudents.pending, (state) => {
+        .addCase(getStudentDetails.pending, (state) => {
           state.loading = true;
           state.error = null;
         })
-        .addCase(fetchDetailedStudents.fulfilled, (state, action) => {
+        .addCase(getStudentDetails.fulfilled, (state, action) => {
           state.students = action.payload.students;
           state.loading = false;
         })
-        .addCase(fetchDetailedStudents.rejected, (state, action) => {
+        .addCase(getStudentDetails.rejected, (state, action) => {
           state.loading = false;
           state.error = action.error.message || "Failed to fetch students";
         });

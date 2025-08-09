@@ -6,6 +6,7 @@ import {
     ScrollView,
     Pressable,
     FlatList,
+    Modal
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import {useEffect, useState} from "react";
@@ -16,40 +17,29 @@ import {studentsRootState} from "@/redux/studentStore";
 import {getClassProfile} from "@/redux/class/classProfileSlice";
 import * as Progress from 'react-native-progress';
 import {StrandDetail} from "@/types/class/Strands";
+import {useNavigation} from "@react-navigation/native";
 
-
-const students = [
-    { studentId: 'student1', name: 'John Doe', competence: 'ME' },
-    { studentId: 'student2', name: 'Sophia Bennett', competence: 'AE' },
-    { studentId: 'student3', name: 'Olivia Foster', competence: 'EE' },
-    // Add more students here
-];
 
 export function ClassProfileScreen() {
     const dispatch = useDispatch();
+    const navigation = useNavigation()
 
     const classProfileState = useSelector((state: studentsRootState) => state.classProfile);
     const [selectedTab, setSelectedTab] = useState('Letter Identification');
     const [currentStrand, setCurrentStrand] = useState<StrandDetail | null>(null);
+    const [modalVisible, setModalVisible] = useState(false);
 
     console.log(classProfileState);
 
     useEffect(() => {
+        // @ts-ignore
         dispatch(getClassProfile());
     }, [dispatch]);
 
-    useEffect(() => {
-        console.log("ClassProfileState updated:", JSON.stringify(classProfileState));
-        console.log("Strands length:", classProfileState.strands?.length);
-        console.log("First strand:", classProfileState.strands?.[0]);
-    }, [classProfileState]);
-
 
     useEffect(() => {
-        // Add a guard clause to prevent errors if strands aren't loaded yet
         if (!classProfileState.strands || classProfileState.loading) return;
 
-        // Now set the current strand
         const filteredStrands = classProfileState.strands.filter(
             (strand) => strand.strand === selectedTab
         );
@@ -62,12 +52,14 @@ export function ClassProfileScreen() {
     console.log(classProfileState);
 
     const [search, setSearch] = useState('');
-      return(
+    // @ts-ignore
+    return(
           <View style={styles.container}>
                 <View>
                     <Text style={styles.title}>Class Profile</Text>
                 </View>
               <View style={{height: 20}}></View>
+
               <View style={styles.searchContainer}>
                   <Ionicons name="search" size={18} color="#61758A" />
                   <TextInput
@@ -78,6 +70,21 @@ export function ClassProfileScreen() {
                       placeholderTextColor="#61758A"
                   />
                   <Ionicons name="options-outline" size={18} color="#000" />
+
+                  <Modal
+                      visible={modalVisible}
+                      onRequestClose={() => setModalVisible(false)}
+                  >
+                      <Text>Performance Keys</Text>
+                      <View style={styles.popContainer}>
+
+                          <View>
+                              <Text></Text>
+                          </View>
+                      </View>
+
+
+                  </Modal>
               </View>
 
               <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabScroll}>
@@ -124,7 +131,10 @@ export function ClassProfileScreen() {
                                       studentId={student.studentId}
                                       studentName={student.name}
                                       competence={student.competence}
-                                      onPress={(studentId) => console.log(`Pressed student with ID: ${studentId}`)}
+                                      onPress={(studentId) =>
+                                          // console.log(`student id : ${studentId}`)
+                                          navigation.navigate('StudentScreen', { studentId: studentId })
+                                      }
                                   />
                               )}
                           />
@@ -151,6 +161,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         justifyContent: 'center',
         alignSelf: 'center',
+    },
+    popContainer: {
+        // flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#FFFFFF',
+        width: '40%',
+        alignSelf: 'flex-end',
+        padding: 20,
+        paddingTop: 15,
     },
     searchContainer: {
         flexDirection: 'row',

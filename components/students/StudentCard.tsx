@@ -10,7 +10,7 @@ type studentCardProps = {
     onPress: (studentId: string) => void;
 }
 
-function getColor(code: string): string {
+export function getColor(code: string): string {
     switch (code) {
         case 'BE':
             return 'red';
