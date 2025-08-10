@@ -4,6 +4,7 @@ import {
     Text,
     TextInput,
     ScrollView,
+    TouchableOpacity,
     Pressable,
     FlatList,
     Modal
@@ -55,10 +56,75 @@ export function ClassProfileScreen() {
     // @ts-ignore
     return(
           <View style={styles.container}>
-                <View>
+                <View style={styles.header}>
                     <Text style={styles.title}>Class Profile</Text>
+
+                    <Pressable
+                        style={styles.infoButton}
+                        onPress={() => setModalVisible(true)}>
+                        <Ionicons name="help-outline" size={28} color="black" />
+                    </Pressable>
                 </View>
-              <View style={{height: 20}}></View>
+
+
+              {/* Modal Popup */}
+              <Modal
+                  animationType="fade"
+                  transparent={true}
+                  visible={modalVisible}
+                  onRequestClose={() => setModalVisible(false)}
+              >
+                  <View style={styles.overlay}>
+                      <View style={styles.modalContent}>
+                          <View style={styles.modalTitleContainer}>
+                              <Text style={styles.modalTitle}>Performance Keys</Text>
+                              <Ionicons
+                                  name={'close-circle-outline'}
+                                  size={24}
+                                  color={'black'}
+                                  onPress={() => setModalVisible(false)}
+                              />
+                          </View>
+
+                          <View style={styles.keyContainer}>
+                              <Text style={[styles.keyText, { color: "#B22222" }]}>
+                                  BE - Below Expectation
+                              </Text>
+                              <Text style={{ color: "#CD5C5C" }}>
+                                  Need significant support
+                              </Text>
+                          </View>
+
+                          <View style={styles.keyContainer}>
+                              <Text style={[styles.keyText, { color: "#BDB76B" }]}>
+                                  AE - Approaching Expectation
+                              </Text>
+                              <Text style={{ color: "#BDB76B" }}>
+                                  Developing with some support needed
+                              </Text>
+                          </View>
+
+                          <View style={styles.keyContainer}>
+                              <Text style={[styles.keyText, { color: "#00FF00" }]}>
+                                  ME - Meeting Expectation
+                              </Text>
+                              <Text style={{ color: "#90EE90" }}>
+                                  Consistently meets standards
+                              </Text>
+                          </View>
+
+                          <View style={styles.keyContainer}>
+                              <Text style={[styles.keyText, { color: "#0000FF" }]}>
+                                  EE - Exceeding Expectation
+                              </Text>
+                              <Text style={{ color: "#4169E1" }}>
+                                  Advanced mastery achieved
+                              </Text>
+                          </View>
+
+                      </View>
+                  </View>
+              </Modal>
 
               <View style={styles.searchContainer}>
                   <Ionicons name="search" size={18} color="#61758A" />
@@ -70,21 +136,6 @@ export function ClassProfileScreen() {
                       placeholderTextColor="#61758A"
                   />
                   <Ionicons name="options-outline" size={18} color="#000" />
-
-                  <Modal
-                      visible={modalVisible}
-                      onRequestClose={() => setModalVisible(false)}
-                  >
-                      <Text>Performance Keys</Text>
-                      <View style={styles.popContainer}>
-
-                          <View>
-                              <Text></Text>
-                          </View>
-                      </View>
-
-
-                  </Modal>
               </View>
 
               <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabScroll}>
@@ -156,11 +207,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         paddingTop: 30,
     },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+    },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
         justifyContent: 'center',
         alignSelf: 'center',
+    },
+    infoButton: {
+        position: 'absolute',
+        right: 20,
+        top: 10,
     },
     popContainer: {
         // flex: 1,
@@ -205,7 +268,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         gap: 10,
         marginVertical: 10,
-        marginBottom: 15,
+        marginBottom: 40,
     },
     workCovered: {
         fontWeight: 'bold',
@@ -214,5 +277,47 @@ const styles = StyleSheet.create({
     percentage: {
         fontSize: 16,
         fontWeight: 'bold',
+    },
+
+    overlay: {
+        flex: 1,
+        backgroundColor: "rgba(0,0,0,0.5)",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    modalContent: {
+        backgroundColor: "#fff",
+        padding: 20,
+        borderRadius: 15,
+        width: "85%",
+        shadowColor: "#000",
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    modalTitleContainer: {
+        marginVertical: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    modalTitle: {
+        fontSize: 18,
+        fontWeight: "bold",
+        marginBottom: 10,
+        textAlign: "left",
+    },
+    keyContainer: {
+        marginBottom: 12,
+    },
+    keyText: {
+        fontWeight: "bold",
+    },
+    closeButton: {
+        marginTop: 10,
+        backgroundColor: "#333",
+        paddingVertical: 8,
+        borderRadius: 8,
+        alignItems: "center",
     },
 });

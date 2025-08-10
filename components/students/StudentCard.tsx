@@ -13,13 +13,13 @@ type studentCardProps = {
 export function getColor(code: string): string {
     switch (code) {
         case 'BE':
-            return 'red';
+            return '#B22222';
         case 'AE':
-            return 'green';
+            return '#BDB76B';
         case 'ME':
-            return 'limegreen';
+            return '#00FF00';
         case 'EE':
-            return 'blue';
+            return '#0000FF';
         default:
             return 'gray';
     }

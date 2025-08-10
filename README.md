@@ -1,50 +1,50 @@
-# Class Performance
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# Class Performance React Native App
 
-## Get started
+## Design Decisions
+- **React Native Navigation**: The app uses React Navigation for seamless and native-like navigation between screens, providing a scalable structure for future screens and deep linking.
+- **Redux Toolkit**: State management is handled with Redux Toolkit for predictable state updates and easy debugging, especially for class and student data.
+- **Component Structure**: UI is broken into reusable components (e.g., `StudentCard`, `AppTab`) to promote maintainability and code reuse.
+- **TypeScript**: Type safety is enforced throughout the app to catch errors early and improve developer experience.
+- **Progress Bar**: The `react-native-progress` library is used for visualizing strand progress, offering a clean and customizable UI element.
 
-1. Install dependencies
+## Assumptions Made
+- The backend API endpoints for class and student data are available and follow the expected schema.
+- All students have unique `studentId` values.
+- The app is primarily targeted for mobile devices (iOS and Android) and tested on recent OS versions.
+- The app will be run using Expo for easier development and testing.
 
-   ```bash
-   npm install
+## Setup and Testing
+1. **Clone the Repository**
+   ```sh
+   git clone <repo-url>
+   cd class-performance-react-native
    ```
-
-2. Start the app
-
-   ```bash
+2. **Install Dependencies**
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
+3. **Start the App**
+   ```sh
    npx expo start
    ```
+   - Use the Expo Go app on your device or an emulator to run the app.
 
-In the output, you'll find options to open the app in a
+## Technologies Used
+- **React Native**: For building cross-platform mobile apps with a native feel.
+- **Expo**: Simplifies development, testing, and deployment of React Native apps.
+- **Redux Toolkit**: Efficient and scalable state management.
+- **TypeScript**: Ensures type safety and reduces runtime errors.
+- **React Navigation**: Handles navigation and routing between screens.
+- **react-native-progress**: For progress bar UI elements.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Why These Technologies?
+- **React Native & Expo**: Rapid development, hot reloading, and easy deployment.
+- **Redux Toolkit**: Simplifies state logic and reduces boilerplate.
+- **TypeScript**: Improves code quality and maintainability.
+- **React Navigation**: Most popular and well-supported navigation library for React Native.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+For any issues or contributions, please open an issue or submit a pull request.
