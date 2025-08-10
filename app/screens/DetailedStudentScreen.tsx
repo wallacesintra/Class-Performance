@@ -54,7 +54,7 @@ export function DetailedStudentScreen({route}) {
         } else if (studentState.error) {
             console.error("Error fetching student details:", studentState.error);
         } else {
-            console.log("Student details fetched successfully:", studentState.students);
+            console.log("Student details fetched successfully:");
         }
     }, [studentState]);
 

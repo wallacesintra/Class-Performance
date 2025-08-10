@@ -1,5 +1,21 @@
-
 # Class Performance React Native App
+
+## Screenshots
+
+Below are some screenshots of the application in action:
+
+| Class Profile Screen                          | Student Details Screen                          |
+|-----------------------------------------------|-------------------------------------------------|
+| ![Class Profile](screenshots/screenshot3.png) | ![Student Details](screenshots/screenshot1.png) |
+
+## Demo Video
+
+[![Demo Video](screenshots/screenshot1.png)](screenshots/demo.mp4)
+
+## Figma Design
+
+You can view the app's design in Figma here: [Class Performance Figma](https://www.figma.com/design/QOk5GqNCDV6C2uMuwnLQ32/Class-performance?node-id=0-1&t=bwYRvoO86bimOW6m-1)
+
 
 ## Design Decisions
 - **React Native Navigation**: The app uses React Navigation for seamless and native-like navigation between screens, providing a scalable structure for future screens and deep linking.
@@ -11,7 +27,7 @@
 ## Assumptions Made
 - The backend API endpoints for class and student data are available and follow the expected schema.
 - All students have unique `studentId` values.
-- The app is primarily targeted for mobile devices (iOS and Android) and tested on recent OS versions.
+- The app is primarily targeted for mobile devices (Android) and tested on recent OS versions.
 - The app will be run using Expo for easier development and testing.
 
 ## Setup and Testing
@@ -45,6 +61,7 @@
 - **Redux Toolkit**: Simplifies state logic and reduces boilerplate.
 - **TypeScript**: Improves code quality and maintainability.
 - **React Navigation**: Most popular and well-supported navigation library for React Native.
+
 
 ---
 For any issues or contributions, please open an issue or submit a pull request.

@@ -63,7 +63,6 @@ export const fetchClassProfile = async (): Promise<NetworkResponse<FetchClassPro
 
     if (response.ok) {
         const json = await response.json();
-        console.log("API Response:", json);
 
         return {
             kind: 'success',
