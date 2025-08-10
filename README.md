@@ -10,7 +10,7 @@ Below are some screenshots of the application in action:
 
 ## Demo Video
 
-[![Demo Video](screenshots/screenshot1.png)](screenshots/demo.mp4)
+[Demo Video](https://drive.google.com/file/d/1neLiXAhdwKnY6uIRZRYIfBEuLUd3HsTo/view?usp=sharing)
 
 ## Figma Design
 
