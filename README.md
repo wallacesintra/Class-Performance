@@ -12,6 +12,11 @@ Below are some screenshots of the application in action:
 
 [Demo Video](https://drive.google.com/file/d/1neLiXAhdwKnY6uIRZRYIfBEuLUd3HsTo/view?usp=sharing)
 
+<video autoplay loop muted playsinline>
+  <source src="screenshots/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Figma Design
 
 You can view the app's design in Figma here: [Class Performance Figma](https://www.figma.com/design/QOk5GqNCDV6C2uMuwnLQ32/Class-performance?node-id=0-1&t=bwYRvoO86bimOW6m-1)
